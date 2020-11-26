@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+
+<head>
+    <link rel="icon" href="./GameLogo.png" type="image/x-icon" />
+    <link rel="shortcut icon" href="./GameLogo.png" type="image/x-icon" />
+    <style>
+        body {
+            background-color: rgb(238, 238, 238);
+            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+            padding: 30px;
+        }
+
+        h1 {
+            font-size: 40px;
+            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+        }
+
+        h2 {
+            font-size: 30px;
+            font-family: Consolas;
+            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+        }
+
+        h3 {
+            font-size: 25px;
+            font-family: Consolas;
+            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+        }
+
+        .row {
+            display: flex;
+        }
+
+        .column {
+            flex: 50%;
+        }
+
+        .red {
+            color: rgb(255, 175, 175);
+        }
+
+        .green {
+            color: rgb(149, 247, 165);
+        }
+
+        .blue {
+            color: rgb(175, 210, 255);
+        }
+
+        .yellow {
+            color: rgb(226, 236, 133);
+        }
+
+        .indent {
+            margin-left: 30px;
+        }
+
+        .center {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <img class="center" src="./GameLogo.png" width=150 height=150>
+    <h1 class="center">Take It All!</h1>
+    <h1 class="center" style="font-size: 20px; margin-bottom: 500px;">Official Game Rules</h1>
+    <h1>Game Overview</h1>
+    <h2>Take It All! is a 4-player game with players red, green, yellow, and blue. Each player will start in a
+        different color in the board, and they will then be allowed to move around on the board for a limited period of
+        time. While moving on the board, players will turn squares that they cross over into their own color. Beware of
+        other players, however; If two players collide, they both become a solid wall that can't move (and is now a
+        hazard for other players). The objective of the game is to turn the largest amount of squares into the same
+        color as you, and the player with the most squares to their color at the end of the set time period is declared
+        the winner.
+    </h2>
+    <h2>However, the twist is that players are not allowed to directly control their characters when the game is
+        happening live. Instead, they must create a program that instructs their character how to move in every game
+        frame. Below we have all of the coding functions fully explained, with several examples.</h2>
+    <div class="row" style="margin-top: 100px;">
+        <div class="column">
+            <h1>Movement Functions</h1>
+            <h2 class="red">player.turn_cw()</h2>
+            <h3 class="red indent">Turns the player 90 degrees clockwise</h3>
+            <h2 class="blue">player.turn_ccw()</h2>
+            <h3 class="blue indent">Turns the player 90 degrees counterclockwise</h3>
+            <h2 class="green">player.turn_random_direction()</h2>
+            <h3 class="green indent">Makes player turn random direction</h3>
+            <h2 class="yellow">player.turn_180()</h2>
+            <h3 class="yellow indent">Turns the player 180 degrees</h3>
+            <h2 class="red">player.face_right()</h2>
+            <h2 class="red">player.face_left()</h2>
+            <h2 class="red">player.face_up()</h2>
+            <h2 class="red">player.face_down()</h2>
+            <h3 class="red indent">Makes player change to specified direction (left, right, up, or down)</h3>
+            <h1>Sensory Functions</h1>
+            <h2 class="blue">player.facing_wall()</h2>
+            <h3 class="blue indent">Boolean return Value; It returns true when the player is facing the wall (as in it
+                will run into the wall if it goes foreward one block) and false when it is not</h3>
+            <h2 class="green">player.facing_empty()</h2>
+            <h3 class="green indent">Boolean return Value; Returns true when player is facing an empty square (a white
+                square), false otherwise.</h3>
+            <h2 class="yellow">player.facing_own_territory()</h2>
+            <h3 class="yellow indent">Boolean return Value; Returns true or false depending on whether the player is
+                facing territory of own color (true if facing own color)</h3>
+            <h2 class="red">player.facing_enemy_territory()</h2>
+            <h3 class="red indent">Boolean return Value: Returns true if the player is facing an enemy’s territory
+                (marked by a color other than its own)</h3>
+            <h2 class="blue">player.get_direction()</h2>
+            <h3 class="blue indent">Integer return Value: Returns an integer depending on which direction the player is
+                facing</h3>
+            <h3 class="blue indent">0: Up</h3>
+            <h3 class="blue indent">1: Right</h3>
+            <h3 class="blue indent">2: Down</h3>
+            <h3 class="blue indent">3: Left</h3>
+            <h2 class="green">player.get_x()</h2>
+            <h3 class="green indent">Integer return Value: Returns an integer based on x-coordinate location</h3>
+            <h3 class="green indent">Note: (x=1, y=1) is the bottom left corner, and (x=10, y=10) is the top right
+                corner</h3>
+            <h2 class="yellow">player.get_y()</h2>
+            <h3 class="yellow indent">Integer return Value: Returns an integer based on y-coordinate location</h3>
+            <h2 class="red">player.enemy_dist_in_front()</h2>
+            <h3 class="red indent">Returns integer based on how much distance is between player and enemy</h3>
+        </div>
+        <div class="column">
+            <img src="./turn_cw.gif" width=300 height=300>
+            <h2>if player.facing_wall():</h2>
+            <h2 class="indent">player.turn_cw()</h2>
+            <img src="./turn_random.gif" width=300 height=300>
+            <h2>if player.facing_empty():</h2>
+            <h2 class="indent">player.turn_random_direction()</h2>
+            <img src="./facing_self.gif" width=300 height=300>
+            <h2>if player.facing_wall() or player.facing_own_territory():/h2>
+                <h2 class="indent">player.turn_cw()</h2>
+                <img src="./point_up.gif" width=300 height=300>
+                <h2>if player.get_y() < 6:</h2>
+                        <h2 class="indent">player.face_up()</h2>
+                        <h2>else:</h2>
+                        <h2 class="indent">player.turn_random_direction()</h2>
+        </div>
+    </div>
+    <h1 class="center">Good Luck, and Happy Coding!</h1>
+</body>
+
+</html>
